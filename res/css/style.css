@@ -2,21 +2,37 @@ header nav {
     display: flex;               /* activa flexbox */
     justify-content: space-between; /* separa enlaces a la izquierda y foto a la derecha */
     align-items: center;         /* centra verticalmente */
-    padding: 10px;
+    padding: 20px;
     background-color: rgb(200, 200, 200);
+    border-radius: 15px;
 }
 
 footer{
     background-color: rgb(200, 200, 200);
     text-align: center;
-    padding: 10px;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .post {
   border: 1px solid #aaa;
   border-radius: 10px;
-  padding: 15px;
-  margin: 10px auto;
-  max-width: 400px;
+  padding: 20px;
+  margin: 20px auto;
   background: white;
+  width: auto-fit;
+}
+
+
+.layout {
+  display: flex;       /* activa el modo fila */
+  gap: 20px;          /* espacio entre los elementos flexibles */
+}
+
+.margin {
+  flex: 1;             /* ocupa espacio flexible */
+  background: rgb(200, 200, 200);
+  border-radius: 15px;
+  margin: 20px auto;
+  min-width: 50px;    /* ancho mínimo para que no desaparezca */
 }
