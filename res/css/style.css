@@ -7,6 +7,11 @@ header nav {
     border-radius: 15px;
 }
 
+.menu-links:hover {
+  display: inline;
+  background-color: rgb(98, 255, 0);  /* color de fondo al hacer hover */
+}
+
 footer{
     background-color: rgb(200, 200, 200);
     text-align: center;
