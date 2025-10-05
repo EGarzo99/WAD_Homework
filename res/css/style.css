@@ -20,7 +20,20 @@ footer{
   padding: 20px;
   margin: 20px auto;
   background: white;
-  width: auto-fit;
+  width: auto;
+  background-color: rgb(240, 240, 240);
+  line-height: 2;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  flex: 3; /* o un número mayor que 1, para darle más espacio que los margenes */
+  background: white;
 }
 
 
@@ -34,5 +47,5 @@ footer{
   background: rgb(200, 200, 200);
   border-radius: 15px;
   margin: 20px auto;
-  min-width: 50px;    /* ancho mínimo para que no desaparezca */
+  max-width: 300px;    /* ancho máximo para que no desaparezca */
 }
