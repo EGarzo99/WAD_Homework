@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add post</title>
+    <link rel="icon" href="res/images/favicon.ico">
+    <link rel="stylesheet" href="res/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+        <div class="menu">
+            <a href="#">Home</a>
+        </div>
+        <img src="res/images/me.png" alt="Profile" width="40">
+        </nav>
+    </header>
+    <div class="layout" style="justify-content: center;">
+        <main>
+            <form class="addPost">
+                <div style="display: flex; flex-direction: row; align-items: flex-start; margin-bottom: 1em">
+                    <div style="display: flex; flex-direction: column; margin-right: 1em">
+                     <span> Post</span>
+                     <span> Body</span>
+                    </div>
+                   <textarea id="postBody" name="postBody" rows="4" cols="40" placeholder="textarea"></textarea>
+                </div>
+                
+                <div style="display: flex; flex-direction: row; align-items: flex-start;">
+                    <div style="display: flex; flex-direction: column; margin-right: 1em">
+                        <span> Select</span>
+                        <span> File</span>
+                    </div>
+                    <input type="file" name="selectFile" accept="image/*">
+                </div>
+
+                <div style="display: flex; justify-content: center;">
+                    <button type="submit">Create post</button>
+                </div>
+            </form>
+        </main>
+    </div>
+    
+</body>
+</html>
