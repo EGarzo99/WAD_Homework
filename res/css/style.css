@@ -25,6 +25,39 @@ footer{
   line-height: 2;
 }
 
+.standard-form {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  background: white;
+  width: auto;
+  background-color: rgb(240, 240, 240);
+  line-height: 1;
+}
+.standard-form button {
+  margin-top: 40px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0c53a0;
+  color: white;
+  cursor: pointer;
+}
+
+.standard-form input[type="file"] {
+  display: none;
+}
+
+.standard-form .custom-label {
+  display: inline-block;
+  background-color: #52575c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .post-header {
   display: flex;
   justify-content: space-between;
