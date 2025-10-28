@@ -1,0 +1,12 @@
+[
+    {
+        "username": "admin",
+        "email": "admin@ut.ee",
+        "password": "pass"
+    }
+    {
+        "username": "eneko",
+        "email": "eneko@ut.ee",
+        "password": "pass"
+    }
+]

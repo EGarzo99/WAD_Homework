@@ -43,7 +43,9 @@ function renderPosts(postsArray, container) {
     const dateSpan = document.createElement('span');
     dateSpan.className = 'date';
     dateSpan.style.marginLeft = '8px';
-    dateSpan.textContent = new Date(p.date).toLocaleString();
+    const dt = new Date(p.date);
+    const pad = n => String(n).padStart(2, '0');
+    dateSpan.textContent = `${dt.getFullYear()}/${pad(dt.getMonth() + 1)}/${pad(dt.getDate())}, ${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
 
     profile.appendChild(avatar);
     profile.appendChild(userSpan);

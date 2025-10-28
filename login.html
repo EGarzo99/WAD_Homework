@@ -5,6 +5,7 @@
     <title>Homework1 - Login</title>
     <link rel="icon" href="res/images/favicon.ico">
     <link rel="stylesheet" href="res/css/style.css">
+    <script src="res/js/login.js"></script>
 </head>
 <body>
     <header>
@@ -22,43 +23,14 @@
         <p>Please log in</p>
         <form id="loginForm" action="#" method="post">
             <div>
-            <input type="email" id="email" name="email" required placeholder="Email">
+            <input type="email" id="email" name="email" placeholder="Email">
             </div>
             <br>
             <div>
-            <input type="password" id="password" name="password" required placeholder="Password">
+            <input type="password" id="password" name="password" placeholder="Password">
             </div>
             <br>
             <button type="submit" id="loginBtn" disabled>Log in</button>
-            <script>
-                // Obtener los elementos
-                const emailInput = document.getElementById("email");
-                const passwordInput = document.getElementById("password");
-                const loginButton = document.getElementById("loginBtn");
-                const form = document.getElementById("loginForm");
-
-                // Función que revisa a ver si los campos están llenos
-                function revisarCampos() {
-                    const emailTexto = emailInput.value.trim();
-                    const passwordTexto = passwordInput.value.trim();
-
-                    if (emailTexto.length > 0 && passwordTexto.length > 0) {
-                        loginButton.disabled = false;
-                    } else {
-                        loginButton.disabled = true;
-                    }
-                }
-
-                // Cuando el usuario escriba, revisa los campos
-                emailInput.addEventListener("input", revisarCampos);
-                passwordInput.addEventListener("input", revisarCampos);
-
-                // Cuando se pulse el botón "Login"
-                form.addEventListener("submit", function(evento) {
-                    evento.preventDefault(); // evita recargar la página
-                    window.location.href = "index.html"; // redirige a index
-                });
-            </script>
         </form>
         <br>
         <a href="#">Forget password</a>
