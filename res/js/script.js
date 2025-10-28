@@ -98,6 +98,23 @@ function renderPosts(postsArray, container) {
 document.addEventListener('DOMContentLoaded', () => {
   const userPhoto = document.getElementById('userPhoto');
   const dropdown = document.getElementById('dropdown');
+  const userData = sessionStorage.getItem('user');
+  const usernameElem = document.getElementById('username');
+  const usermailElem = document.getElementById('usermail');
+  const loginElem = document.getElementById('login');
+  
+
+  if (userData == null) {
+    usernameElem.textContent = 'Guest';
+    usermailElem.textContent = 'no email';
+    loginElem.textContent = 'Login';
+  }
+  else{
+    const user = JSON.parse(userData);
+    usernameElem.textContent = user.username;
+    usermailElem.textContent = user.email;
+    loginElem.textContent = 'Logout';
+  }
 
   userPhoto.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -107,4 +124,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', () => {
     dropdown.style.display = 'none';
   });
+
 });
