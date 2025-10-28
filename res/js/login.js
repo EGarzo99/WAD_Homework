@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 window.location.href = "index.html"; // redirige a index
             } else {
-                alert("Email o contraseña incorrectos.");
+                alert("Email or password incorrect.");
             }
         });
     }
