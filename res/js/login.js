@@ -1,4 +1,4 @@
-const JSONBIN_URL = "https://api.jsonbin.io/v3/b/68ff9e9543b1c97be9850496/latest";
+const JSONBIN_URL = "https://api.jsonbin.io/v3/b/6900de93d0ea881f40c27ae2/latest";
 const LOCAL_JSON = './prueba.json';
 
 // Global posts array
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 window.location.href = "index.html"; // redirige a index
             } else {
-                alert("Email o contraseña incorrectos.");
+                alert("Incorrect email or password. Please try again.");
             }
         });
     }

@@ -5,7 +5,7 @@
     <title>Homework1 - Index</title>
     <link rel="icon" href="res/images/favicon.ico">
     <link rel="stylesheet" href="res/css/style.css">
-    <script src="res/js/script.js"></script>
+    <script src="res/js/index.js"></script>
 </head>
 <body>
     <header>
@@ -19,7 +19,14 @@
             <a href="addPost.html">addPost</a>
             </span>
         </div>
-        <img src="res/images/user.png" alt="Profile" width="60">
+        <div class="user-menu" style="position: relative; display: inline-block;">
+            <img src="res/images/user.png" id="userPhoto" alt="Profile" width="60">
+            <div id="dropdown" class="dropdown-content">
+                <a href="profile.html">Profile</a>
+                <a href="settings.html">Settings</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </div>
         </nav>
     </header>
     <div class="layout">

@@ -94,3 +94,17 @@ function renderPosts(postsArray, container) {
     container.appendChild(article);
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const userPhoto = document.getElementById('userPhoto');
+  const dropdown = document.getElementById('dropdown');
+
+  userPhoto.addEventListener('click', (event) => {
+    event.stopPropagation();
+    dropdown.style.display = 'block';
+  });
+
+  document.addEventListener('click', () => {
+    dropdown.style.display = 'none';
+  });
+});
