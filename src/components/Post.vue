@@ -49,18 +49,22 @@ export default {
 </script>
 
 <style scoped>
+
 .post {
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  max-width: 400px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  background: white;
+  width: auto;
+  background-color: rgb(240, 240, 240);
+  line-height: 2;
 }
 
 .post-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
 .username {
