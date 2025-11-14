@@ -5,3 +5,24 @@
   </nav>
   <router-view/>
 </template>
+
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    text-align: left;
+    color: #7c34cf;
+  }
+
+  nav {
+    padding: 30px;
+  }
+
+  nav a {
+    font-weight: bold;
+    color: #00e5ff;
+  }
+
+  nav a.router-link-exact-active {
+    color: #ff5e00;
+  }
+</style>
