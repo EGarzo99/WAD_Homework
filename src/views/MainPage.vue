@@ -1,10 +1,6 @@
 <template>
     <div class="layout">
-        <aside class='margin'></aside>
-        <main id="posts">
-            <!-- Posts will be dynamically inserted here by res/js/script.js -->
-        </main>
-        <aside class='margin'></aside>
+            <Post></Post>
     </div>
 </template>
 
