@@ -1,12 +1,16 @@
 <template>
     <div class="layout">
+        <aside class='margin'></aside>
+        <main id="posts">
             <Post></Post>
+        </main>
+        <aside class='margin'></aside>
     </div>
 </template>
 
 <script>
 
-import Post from 'src/components/Post.vue'
+import Post from '../components/Post.vue'
 
 export default {
   name: 'MainPage',
@@ -29,4 +33,9 @@ export default {
         margin: 20px auto;
         max-width: 300px;    /* ancho máximo para que no desaparezca */
     }
+    main {
+      flex: 3; /* o un número mayor que 1, para darle más espacio que los margenes */
+      background: white;
+    }
+
 </style>

@@ -3,7 +3,7 @@
     <article v-for="post in posts" :key="post.date" class="post">
       <!-- Post Header -->
       <div class="post-header">
-        <img src="../images/user.png" alt="Profile" width="40">
+        <img src="../assets/user.png" alt="Profile" width="40">
         <span class="username">{{ post.username }}</span>
         <span class="date">{{ formatDate(post.date) }}</span>
       </div>
