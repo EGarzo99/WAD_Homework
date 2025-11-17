@@ -20,6 +20,9 @@
         <button @click="likePost(post)">👍</button>
       </div>
     </article>
+    <div class="reset-likes">
+      <button @click="resetLikes()"> Reset Likes </button>
+    </div>
   </div>
 </template>
 
@@ -42,9 +45,12 @@ export default {
       return new Date(dateString).toLocaleDateString(undefined, options)
     },
     likePost(post) {
-      post.likes += post.liked ? -1 : 1
-      post.liked = !post.liked
-
+      post.likes += 1
+    },
+    resetLikes() {
+      this.$store.state.posts.forEach(post => {
+        post.likes = 0
+      })
     }
   }
 }
@@ -105,5 +111,9 @@ button {
 
 button:hover {
   background-color: #369870;
+}
+.reset-likes {
+  text-align: center;
+  margin: 20px;
 }
 </style>

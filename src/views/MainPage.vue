@@ -36,6 +36,9 @@ export default {
     main {
       flex: 3; /* o un número mayor que 1, para darle más espacio que los margenes */
       background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
 </style>
