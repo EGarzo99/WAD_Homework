@@ -112,6 +112,12 @@ button {
 button:hover {
   background-color: #369870;
 }
+.post-footer {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: right;
+  gap: 0.5rem;
+}
 .reset-likes {
   text-align: center;
   margin: 20px;
