@@ -22,6 +22,6 @@ export default {
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: left;
-    color: #7c34cf;
+    color: #103f00;
   }
 </style>

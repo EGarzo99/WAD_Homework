@@ -120,6 +120,6 @@ button:hover {
 }
 .reset-likes {
   text-align: center;
-  margin: 20px;
+  margin: 30px;
 }
 </style>

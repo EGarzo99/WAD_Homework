@@ -7,9 +7,10 @@
             <li><span>📍</span> Delta Centre, Narva mnt 18, 51009 Tartu, Estonia</li>
             <li><span>📧</span> <a href="mailto:blog@webappdev.com">blog@webappdev.com</a></li>
         </ul>
+        <p>© 2025 Web Application - All rights reserved</p>
     </div>
 
-    <p>© 2025 Web Application - All rights reserved</p>
+    
   </footer>
 </template>
 
@@ -21,8 +22,7 @@ export default {
 
 <style scoped>
 .footer {
-  margin-top: 20px;
-  padding: 10px;
+ padding: 10px;
   background: rgb(200, 200, 200);
   border-radius: 15px;
 }
