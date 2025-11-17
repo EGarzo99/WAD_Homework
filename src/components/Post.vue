@@ -21,7 +21,7 @@
       </div>
     </article>
     <div class="reset-likes">
-      <button @click="resetLikes()"> Reset Likes </button>
+      <button @click="resetLikes()" style="font-size: 20px;"> Reset Likes </button>
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ button {
   border: none;
   background-color: rgb(200, 200, 200);
   border: 1px solid black;
-  color: white;
+  color: rgb(0, 0, 0);
   border-radius: 5px;
 }
 

@@ -1,28 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/signup">Signup</router-link> |
-  </nav>
+  <Header> </Header>
   <router-view/>
+  <Footer></Footer>
 </template>
+
+<script>  
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
+
+export default {
+  name: 'App',
+  components: {
+    Header,
+    Footer
+  }
+}
+</script>
 
 <style>
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     text-align: left;
     color: #7c34cf;
-  }
-
-  nav {
-    padding: 30px;
-  }
-
-  nav a {
-    font-weight: bold;
-    color: #00e5ff;
-  }
-
-  nav a.router-link-exact-active {
-    color: #ff5e00;
   }
 </style>
