@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
     if (!this.$store.state.posts.length) {
-      this.$store.dispatch('loadPosts')
+      this.$store.dispatch('fetchPosts')
     }
   },
   methods: {

@@ -4,7 +4,7 @@
         "date": "2024-10-05 18:30:00",
         "username": "eneko",
         "text": "Ma olen Tartu ja sina oled Tallinn",
-        "photo": "../images/tartu_plaza.jpg"
+        "photo": "/images/tartu_plaza.jpg"
     },
 
     {
@@ -29,7 +29,7 @@
         "date": "2025-10-05 22:47:34",
         "username": "emiliano_92",
         "text": "This is a famous poem from my home country:\nTu subes como la marea,\nyo bajo como la tension.\nPa mi es como un rompecabezas\nlo que pa ti cae de cajón.\nYo tengo arrugas en el alma,\ntu piedras en el corazón.\nMis sentimientos van en chanclas,\ny los tuyos visten de dior.",
-        "photo": "../images/melendi.jpg"
+        "photo": "/images/melendi.jpg"
     },
 
     {
@@ -48,14 +48,14 @@
         "date": "2025-09-02 09:11:00",
         "username": "tiksu",
         "text": "We had fun yesterday at the Delta Center, didn't we?",
-        "photo": "../images/DELTA_CENTER.jpg"
+        "photo": "/images/DELTA_CENTER.jpg"
     },
 
     {
         "date": "2025-09-25 15:32:10",
         "username": "eneko",
         "text": "I've lost my keys at the Physicum, has anyone seen them?",
-        "photo": "../images/keys.jpg"
+        "photo": "/images/keys.jpg"
     },
 
     {
