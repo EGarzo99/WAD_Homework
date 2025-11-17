@@ -16,7 +16,8 @@
 
       <!-- Post Footer -->
       <div class="post-footer">
-        <button @click="likePost(post)">👍 Like</button>
+        <span>{{ post.likes }} likes  </span>
+        <button @click="likePost(post)">👍</button>
       </div>
     </article>
   </div>
@@ -41,8 +42,9 @@ export default {
       return new Date(dateString).toLocaleDateString(undefined, options)
     },
     likePost(post) {
-      alert(`Liked post by ${post.username}!`)
-      // Aquí podrías actualizar un estado de likes si quieres
+      post.likes += post.liked ? -1 : 1
+      post.liked = !post.liked
+
     }
   }
 }
@@ -95,7 +97,8 @@ button {
   cursor: pointer;
   padding: 5px 10px;
   border: none;
-  background-color: #42b983;
+  background-color: rgb(200, 200, 200);
+  border: 1px solid black;
   color: white;
   border-radius: 5px;
 }

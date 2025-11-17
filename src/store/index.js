@@ -10,8 +10,14 @@ export default createStore({
     },
     mutations: {
         setPosts(state, posts) {
-            state.posts = posts // updates state with fetched posts
-        }
+        state.posts = posts.map(p => {
+            return {
+                ...p,
+                likes: 0
+            }
+        })
+        }  
+
     },
     actions: { 
         async fetchPosts({ commit }) {
