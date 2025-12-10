@@ -2,4 +2,3 @@ Group 5
 Eneko Garzon Uria
 Ander Carrasco del Rio
 https://github.com/EGarzo99/WAD_Homework1
-EGarzo99.github.io/WAD_Homework1
