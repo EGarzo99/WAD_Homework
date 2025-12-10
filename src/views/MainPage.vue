@@ -2,7 +2,8 @@
     <div class="layout">
         <aside class='margin'></aside>
         <main id="posts">
-            <Post></Post>
+            <Post @postClicked="goToPost"></Post>
+            
         </main>
         <aside class='margin'></aside>
     </div>
@@ -16,6 +17,11 @@ export default {
   name: 'MainPage',
   components: {
     Post
+  },
+  methods: {
+    goToPost(id) {
+      this.$router.push(`/post/${id}`)
+    }
   }
 }
 </script>

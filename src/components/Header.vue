@@ -3,7 +3,9 @@
         <nav>
         <nav>
         <router-link to="/">Home</router-link><span style="margin: 0 8px;">|</span>
-        <router-link to="/signup">Signup</router-link>
+        <router-link to="/signup">Signup</router-link><span style="margin: 0 8px;">|</span>
+        <router-link to="/login">Login</router-link><span style="margin: 0 8px;">|</span>
+        <router-link to="/contact">Contact Us</router-link>
         </nav>
         <div class="user-menu" style="position: relative; display: inline-block;">
             <img src="../assets/user.png" id="userPhoto" alt="Profile" width="60">

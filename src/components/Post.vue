@@ -1,6 +1,6 @@
 <template>
   <div>
-    <article v-for="post in posts" :key="post.date" class="post">
+    <article v-for="post in posts" :key="post.id" class="post" @click="openPost(post.id) "style="cursor: pointer;">
       <!-- Post Header -->
       <div class="post-header">
         <img src="../assets/user.png" alt="Profile" width="40">
@@ -51,6 +51,9 @@ export default {
       this.$store.state.posts.forEach(post => {
         post.likes = 0
       })
+    },
+    openPost(id) {
+      this.$emit('postClicked', id)
     }
   }
 }

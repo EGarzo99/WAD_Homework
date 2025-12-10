@@ -1,8 +1,8 @@
 
 <template>
 	<div class="standard-form">
-		<h2>Create an account</h2>
-		<p>Please fill the form to sign up </p>
+		<h2>Log In</h2>
+        <p>Please enter your email and password to continue</p>
 
 		<form id="loginForm" @submit.prevent="signup" action="#" method="post">
 			<div>
