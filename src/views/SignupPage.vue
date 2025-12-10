@@ -14,8 +14,6 @@
 			</div>
 			<br>
 			<button type="submit" id="signupBtn">Signup</button>
-			<span> or </span>
-			<button type="button" id="loginBtn" @click="login">Login</button>
 		</form>
     </div>
 </template>
@@ -71,9 +69,6 @@ export default {
 			// Password ok — continue with signup (placeholder)
 			alert('Signup successful');
 			return true;
-		},
-		login() {
-			this.$router.push('/login');
 		}	
 	}
 }
