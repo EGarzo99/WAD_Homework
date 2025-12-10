@@ -74,6 +74,7 @@ export default {
 			}
 
 			// Password ok — continue with signup (placeholder)
+			this.$store.dispatch('signupUser', { email, password });
 			alert('Signup successful');
 			return true;
 		}	

@@ -39,6 +39,20 @@ export default createStore({
       } catch (err) {
         console.error("Error adding post:", err);
       }
-    }   
+    },
+    
+    async signupUser({ commit }, userData) {
+        try {
+            const res = await fetch("http://localhost:3000/api/users", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            });
+            const newUser = await res.json();
+            commit("add_User", newUser.rows ? newUser.rows[0] : newUser);
+        } catch (err) {
+            console.error("Error signing up user:", err);
+        }
+    }
   }
 })

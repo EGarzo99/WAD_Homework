@@ -75,14 +75,14 @@ app.post('/api/posts', async(req, res) => {
 }); 
 
 // Task 1
-app.post('/api/user', async(req, res) => {
+app.post('/api/users', async(req, res) => {
     try {
         console.log("a new user has arrived");
         const user = req.body;
         const newuser = await pool.query(
 
             'INSERT INTO "Users"(user_id, email, password) VALUES ((SELECT MAX(user_id) '+
-              'FROM Users)+1, $1, $2)    RETURNING*', [user.email, user.password]
+              'FROM "Users")+1, $1, $2)    RETURNING*', [user.email, user.password]
         );
         console.log(newuser);
         res.json(newuser);
