@@ -28,7 +28,7 @@ export default {
 		};
 	},
 	methods: {
-		signup() {
+		async signup() {
 			const password = this.password;
 			const email = this.email;
 			const errors = [];
@@ -59,6 +59,13 @@ export default {
 					errors.push('Password must include at least one numeric digit.');
 				}
 			}
+
+			const res = await fetch(`http://localhost:3000/api/users/check/${encodeURIComponent(email)}`);
+    		const data = await res.json();
+    		if (data.exists) {
+     			alert('Email is already registered.');
+    		return false;
+    		}
 
 			if (errors.length) {
 				// Show all validation errors

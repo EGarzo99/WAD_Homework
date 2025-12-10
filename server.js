@@ -42,11 +42,18 @@ app.post("/api/posts/:id/like", async (req, res) => {
   try {
     const result = await pool.query(
       'UPDATE "Posts" SET likes = likes + 1 WHERE id = $1 RETURNING likes', [id]);
-
     res.json(result.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
+});
+
+// Check if email exists
+app.get("/api/users/check/:email", async (req, res) => {
+    const { email } = req.params;
+    const result = await pool.query(
+        'SELECT * FROM "Users" WHERE email = $1', [email]);
+    res.json({exists: result.rows.length > 0});
 });
  
 // Task 1
