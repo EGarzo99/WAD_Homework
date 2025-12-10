@@ -1,25 +1,53 @@
 const express = require('express');
 const pool = require('./database');
 const cors = require('cors')
-const port = process.env.PORT || 3000;
+const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const port = 3000;
 
 const app = express();
-
 app.use(cors());
+app.use(express.json()); 
+app.use(cookieParser());
 
-//The express.json() function is a built-in middleware function in Express. 
-//It parses incoming requests with JSON payloads and is based on body-parser.
-app.use(express.json());
 
-//"async and await make promises easier to write"
-// async makes a function return a Promise
-// The keyword async before a function makes the function return a promise.
-// Syntax:  "async(req, res) => {}"
-// await makes a function wait for a Promise
-// The await keyword can only be used inside an async function.
-// The await keyword makes the function pause the execution and wait for a resolved promise before it continues
-// Syntax:  "async(req, res) => {let value = await promise}"
+// Get all posts
+app.get("/api/posts", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM posts ORDER BY date DESC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
+// Get all users
+app.get("/api/users", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT id, email FROM users ORDER BY id"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Like a post
+app.post("/api/posts/:id/like", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query(
+      "UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING likes", [id]);
+      
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
  
 // Task 1
 app.post('/api/posts', async(req, res) => {
@@ -110,6 +138,7 @@ app.delete('/api/posts/:id', async(req, res) => {
 }); 
 */
 
+//Start the server
 app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
