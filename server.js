@@ -55,13 +55,30 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            'INSERT INTO "Posts"(post_id, user_id, body, date, likes) values ($1, $2, $3, $4, $5)    RETURNING*', [post.id, post.user, post.body, post.date, post.likes]
-            // $1, $2, $3 are mapped to the first, second and third element of the passed array (post.title, post.body, post.urllink)
-            // The RETURNING keyword in PostgreSQL allows returning a value from the insert or update statement.
-            // using "*" after the RETURNING keyword in PostgreSQL, will return everything
+
+            'INSERT INTO "Posts"(post_id, user_id, body, date, likes) VALUES ((SELECT MAX(post_id) ' +
+              'FROM Posts)+1, $1, $2, $3, $4)    RETURNING*', [post.user, post.body, post.date, post.likes]
+        
         );
         console.log(newpost);
         res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
+    }
+}); 
+
+// Task 1
+app.post('/api/user', async(req, res) => {
+    try {
+        console.log("a new user has arrived");
+        const user = req.body;
+        const newuser = await pool.query(
+
+            'INSERT INTO "Users"(user_id, email, password) VALUES ((SELECT MAX(user_id) '+
+              'FROM Users)+1, $1, $2)    RETURNING*', [user.email, user.password]
+        );
+        console.log(newuser);
+        res.json(newuser);
     } catch (err) {
         console.error(err.message);
     }
