@@ -1,17 +1,17 @@
 <template>
   <div>
-    <article v-for="post in posts" :key="post.id" class="post" @click="openPost(post.id) "style="cursor: pointer;">
+    <article v-for="post in posts" :key="post.post_id" class="post">
       <!-- Post Header -->
       <div class="post-header">
         <img src="../assets/user.png" alt="Profile" width="40">
-        <span class="username">{{ post.username }}</span>
+        <span class="email">{{ post.email }}</span>
         <span class="date">{{ formatDate(post.date) }}</span>
       </div>
 
       <!-- Post Body -->
-      <div class="post-body">
+      <div class="post-body" @click="openPost(post.id) "style="cursor: pointer;">
         <img v-if="post.photo" :src="post.photo" alt="Post image" width="300">
-        <p>{{ post.text }}</p>
+        <p>{{ post.body }}</p>
       </div>
 
       <!-- Post Footer -->
@@ -45,12 +45,13 @@ export default {
       return new Date(dateString).toLocaleDateString(undefined, options)
     },
     likePost(post) {
-      post.likes += 1
+        this.$store.commit('update_Likes', { id: post.id, likes: post.likes + 1 });
+        this.$store.dispatch('likePost', post.id);
     },
     resetLikes() {
-      this.$store.state.posts.forEach(post => {
-        post.likes = 0
-      })
+        this.$store.state.posts.forEach(post => {
+        this.$store.commit('update_Likes', { id: post.id, likes: 0 });
+      });
     },
     openPost(id) {
       this.$emit('postClicked', id)

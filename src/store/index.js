@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import axios from "axios"
 
 export default createStore({    
     state: {
@@ -18,6 +17,28 @@ export default createStore({
         }
     },
     actions: {
-        
+        async fetchPosts({ commit }) {
+      try {
+        const res = await fetch("http://localhost:3000/api/posts");
+        const data = await res.json();
+        commit("set_Posts", data);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    },
+
+    async addPost({ commit }, postData) {
+      try {
+        const res = await fetch("http://localhost:3000/api/posts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(postData)
+        });
+        const newPost = await res.json();
+        commit("add_Post", newPost.rows ? newPost.rows[0] : newPost);
+      } catch (err) {
+        console.error("Error adding post:", err);
+      }
+    }   
   }
 })

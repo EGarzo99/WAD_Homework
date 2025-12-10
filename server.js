@@ -13,10 +13,10 @@ app.use(cookieParser());
 
 
 // Get all posts
-app.get("/api/posts", async (req, res) => {
+app.get("/api/Posts", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM posts ORDER BY date DESC"
+      'SELECT *, u.email FROM "Posts" p JOIN "Users" u ON p.user_id = u.user_id ORDER BY p.date DESC;'
     );
     res.json(result.rows);
   } catch (err) {
@@ -28,7 +28,7 @@ app.get("/api/posts", async (req, res) => {
 app.get("/api/users", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT id, email FROM users ORDER BY id"
+      'SELECT id, email FROM "Users" ORDER BY id'
     );
     res.json(result.rows);
   } catch (err) {
@@ -41,8 +41,8 @@ app.post("/api/posts/:id/like", async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      "UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING likes", [id]);
-      
+      'UPDATE "Posts" SET likes = likes + 1 WHERE id = $1 RETURNING likes', [id]);
+
     res.json(result.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -55,7 +55,7 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO Posts(post_id, user_id, body, date, likes) values ($1, $2, $3, $4, $5)    RETURNING*", [post.id, post.user, post.body, post.date, post.likes]
+            'INSERT INTO "Posts"(post_id, user_id, body, date, likes) values ($1, $2, $3, $4, $5)    RETURNING*', [post.id, post.user, post.body, post.date, post.likes]
             // $1, $2, $3 are mapped to the first, second and third element of the passed array (post.title, post.body, post.urllink)
             // The RETURNING keyword in PostgreSQL allows returning a value from the insert or update statement.
             // using "*" after the RETURNING keyword in PostgreSQL, will return everything
