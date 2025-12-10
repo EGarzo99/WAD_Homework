@@ -35,7 +35,7 @@ export default {
             this.$router.push('/login');
         },
         singup() {
-            window.location.href = "index.html";
+            this.$router.push('/signup');
         }
     }
 }
