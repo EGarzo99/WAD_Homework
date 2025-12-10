@@ -11,13 +11,26 @@ app.use(cors());
 app.use(express.json()); 
 app.use(cookieParser());
 
-
 // Get all posts
 app.get("/api/Posts", async (req, res) => {
   try {
     const result = await pool.query(
       'SELECT *, u.email FROM "Posts" p JOIN "Users" u ON p.user_id = u.user_id ORDER BY p.date DESC;'
     );
+    console.log("Fetched posts: ", result.rows);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Get post by ID
+app.get("/api/Posts/:id", async (req, res) => {
+  try {
+    const result = await pool.query(
+      'SELECT *, u.email FROM "Posts" p JOIN "Users" u ON p.user_id = u.user_id WHERE p.post_id = $1;', [req.params.id]
+    );
+    console.log("Fetched post: ", result.rows);
     res.json(result.rows);
   } catch (err) {
     console.error(err.message);
@@ -30,6 +43,20 @@ app.get("/api/users", async (req, res) => {
     const result = await pool.query(
       'SELECT id, email FROM "Users" ORDER BY id'
     );
+    console.log("Fetched users: ", result.rows);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Get user by email
+app.get("/api/users/:email", async (req, res) => {
+  try {
+    const result = await pool.query(
+      'SELECT id, email FROM "Users" WHERE email = $1', [req.params.email]
+    );
+    console.log("Fetched user: ", result.rows);
     res.json(result.rows);
   } catch (err) {
     console.error(err.message);
@@ -42,6 +69,7 @@ app.post("/api/posts/:id/like", async (req, res) => {
   try {
     const result = await pool.query(
       'UPDATE "Posts" SET likes = likes + 1 WHERE id = $1 RETURNING likes', [id]);
+    console.log("Updated likes: ", result.rows[0]);
     res.json(result.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -56,7 +84,7 @@ app.get("/api/users/check/:email", async (req, res) => {
     res.json({exists: result.rows.length > 0});
 });
  
-// Task 1
+// Create new post
 app.post('/api/posts', async(req, res) => {
     try {
         console.log("a post request has arrived");
@@ -67,14 +95,16 @@ app.post('/api/posts', async(req, res) => {
               'FROM Posts)+1, $1, $2, $3, $4)    RETURNING*', [post.user, post.body, post.date, post.likes]
         
         );
-        console.log(newpost);
+        console.log("new post created: ", newpost);
         res.json(newpost);
     } catch (err) {
         console.error(err.message);
     }
 }); 
 
-// Task 1
+app.put
+
+// Create new user
 app.post('/api/users', async(req, res) => {
     try {
         console.log("a new user has arrived");
@@ -84,30 +114,47 @@ app.post('/api/users', async(req, res) => {
             'INSERT INTO "Users"(user_id, email, password) VALUES ((SELECT MAX(user_id) '+
               'FROM "Users")+1, $1, $2)    RETURNING*', [user.email, user.password]
         );
-        console.log(newuser);
+        console.log("new user created: ", newuser);
         res.json(newuser);
     } catch (err) {
         console.error(err.message);
     }
 }); 
 
-
-/* 
-// Task 2
-app.get('/api/posts', async(req, res) => {
-    try {
-        console.log("get posts request has arrived");
-        const posts = await pool.query(
-            "SELECT * FROM posttable"
-        );
-        res.json(posts.rows);
-    } catch (err) {
-        console.error(err.message);
-    }
+// Delete post by ID
+app.delete('/api/posts/:id', async(req, res) => {
+  try {
+    console.log("delete a post request has arrived");
+    const { id } = req.params;
+    const deletepost = await pool.query(
+      'DELETE FROM "Posts" WHERE post_id = $1 RETURNING*', [id]
+    );
+    console.log(deletepost);
+    res.json(deletepost);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
- */
 
-/* 
+// Update post by ID
+app.put('/api/posts/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    const post = req.body;
+    console.log("update request has arrived");
+    const updatepost = await pool.query(
+      'UPDATE "Posts" SET body = $1, date = $2 WHERE post_id = $3 RETURNING*', 
+      [post.body, new Date(), id]
+    );
+    console.log("post updated: ", updatepost);
+    res.json(updatepost);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+
+/*
 // Task 3
 app.get('/api/posts/:id', async(req, res) => {
     try {
