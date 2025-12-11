@@ -59,7 +59,7 @@ app.post("/api/login", async (req, res) => {
     );
     if(password == result.rows[0].password){
       console.log("Fetched user: ", result.rows);
-      res.json(result.rows);
+      res.json(result.rows[0]);
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     } 

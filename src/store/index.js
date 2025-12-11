@@ -18,7 +18,9 @@ export default createStore({
             if (post) post.likes = likes;
         },
         set_User(state, user) {
+            console.log("Setting user in state:", user);
             state.user = user;
+            console.log("Current user in state:", state.user);
         }
     },
     actions: {
@@ -39,7 +41,7 @@ export default createStore({
           return;
         }
 
-        postData.user = state.user.id; 
+        postData.user = state.user.user_id; 
         console.log("Adding post with data:", postData);
         const res = await fetch("http://localhost:3000/api/posts", {
           method: "POST",

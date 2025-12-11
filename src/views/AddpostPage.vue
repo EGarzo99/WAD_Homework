@@ -7,7 +7,7 @@
         <form @submit.prevent="addPost">
             <div>
                 <label for="body">Body</label>
-                <textarea id="body" name="body" required></textarea>
+                <textarea id="body" name="body" v-model="body" required></textarea>
             </div>
             <div>
                 <button type="submit" id="submit">Submit Post</button>
