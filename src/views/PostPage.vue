@@ -24,20 +24,23 @@ export default {
       post: null
     };
   },
-  async mounted() {
-    const id = this.$route.params.id;
-    try {
-      const res = await fetch(`http://localhost:3000/api/posts/${id}`);
-      if (res.ok) {
-        this.post = await res.json();
-      } else {
-        this.post = null;
-      }
-    } catch (err) {
-      console.error(err);
+ async mounted() {
+  const id = this.$route.params.id;
+  try {
+    const res = await fetch(`http://localhost:3000/api/posts/${id}`);
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+      this.post = Array.isArray(data) ? data[0] : data;
+    } else {
       this.post = null;
     }
+  } catch (err) {
+    console.error(err);
+    this.post = null;
   }
+}
+
 }
 </script>
 
