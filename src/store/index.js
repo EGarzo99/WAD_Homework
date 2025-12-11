@@ -32,9 +32,15 @@ export default createStore({
       }
     },
 
-    async addPost({ commit }, postData) {
+    async addPost({ commit, state }, postData) {
       try {
-        postData.user = this.state.user.id; // Assign current user ID to postData
+        if (!state.user) {
+          console.error("No user logged in!");
+          return;
+        }
+
+        postData.user = state.user.id; 
+        console.log("Adding post with data:", postData);
         const res = await fetch("http://localhost:3000/api/posts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -74,6 +80,7 @@ export default createStore({
         }
 
         const user = await res.json();
+        console.log("Logged in user data:", user);
         commit("set_User", user);
 
         return true;

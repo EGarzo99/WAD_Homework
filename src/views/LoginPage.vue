@@ -4,7 +4,7 @@
 		<h2>Log In</h2>
         <p>Please enter your email and password to continue</p>
 
-		<form id="loginForm" @submit.prevent="signup" action="#" method="post">
+		<form id="loginForm" @submit.prevent="login" action="#" method="post">
 			<div>
 			<input type="email" id="email" name="email" v-model="email" placeholder="Email">
 			</div>
@@ -31,11 +31,18 @@ export default {
 		};
 	},
     methods: {
-        login() {
-            this.$store.dispatch('login', {
+        async login() {
+            const result = await this.$store.dispatch('login', {
                 email: this.email,
                 password: this.password
             });
+
+            if (result) {
+                this.$router.push('/');
+            } else {
+                alert('Login failed. Please check your credentials and try again.');
+            }
+
         },
         singup() {
             this.$router.push('/signup');

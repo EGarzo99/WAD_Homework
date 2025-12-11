@@ -31,7 +31,7 @@ export default {
 	methods: {
 		async addPost() {
 
-			this.$store.dispatch('addPost', { user: '', body: this.body });
+			await this.$store.dispatch('addPost', { user: '', body: this.body });
 			alert('Post added successfully');
 			return true;
 		}	

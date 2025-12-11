@@ -50,14 +50,19 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// Get user by email
-app.get("/api/users/:email", async (req, res) => {
+// Log in user
+app.post("/api/login", async (req, res) => {
   try {
+    const { email, password } = req.body;
     const result = await pool.query(
-      'SELECT id, email FROM "Users" WHERE email = $1', [req.params.email]
+      'SELECT user_id, email, password FROM "Users" WHERE email = $1', [email]
     );
-    console.log("Fetched user: ", result.rows);
-    res.json(result.rows);
+    if(password == result.rows[0].password){
+      console.log("Fetched user: ", result.rows);
+      res.json(result.rows);
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    } 
   } catch (err) {
     console.error(err.message);
   }
@@ -92,7 +97,7 @@ app.post('/api/posts', async(req, res) => {
         const newpost = await pool.query(
 
             'INSERT INTO "Posts"(post_id, user_id, body, date, likes) VALUES ((SELECT MAX(post_id) ' +
-              'FROM Posts)+1, $1, $2, $3, $4)    RETURNING*', [post.user, post.body, new Date(), 0]
+              'FROM "Posts")+1, $1, $2, $3, $4)    RETURNING*', [post.user, post.body, new Date(), 0]
         
         );
         console.log("new post created: ", newpost);
