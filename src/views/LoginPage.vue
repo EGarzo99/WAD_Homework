@@ -32,7 +32,10 @@ export default {
 	},
     methods: {
         login() {
-            this.$router.push('/login');
+            this.$store.dispatch('login', {
+                email: this.email,
+                password: this.password
+            });
         },
         singup() {
             this.$router.push('/signup');
