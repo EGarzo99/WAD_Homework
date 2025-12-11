@@ -4,7 +4,7 @@
         <aside class='margin'></aside>
         <main id="posts">
             <div v-if="currentUser" class="logout-container">
-                <p>Welcome, <strong>{{ currentUser.username }}</strong>!</p>
+                <p>Welcome, <strong>{{ currentUser.email }}</strong>!</p>
                 <button @click="logout" class="logout-btn">Logout</button>
             </div>
             <Post @postClicked="goToPost"></Post>
@@ -58,7 +58,7 @@ export default {
     }
 
     .logout-container {
-      background: #f5f5f5;
+      background: #a5e7fc92;
       padding: 16px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -66,6 +66,12 @@ export default {
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      border: 1px solid #aaa;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: auto;
+      line-height: 2;
     }
 
     .logout-container p {

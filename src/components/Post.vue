@@ -9,7 +9,7 @@
       </div>
 
       <!-- Post Body -->
-      <div class="post-body" @click="openPost(post.id) "style="cursor: pointer;">
+      <div class="post-body" @click="openPost(post.post_id) "style="cursor: pointer;">
         <img v-if="post.photo" :src="post.photo" alt="Post image" width="300">
         <p>{{ post.body }}</p>
       </div>
