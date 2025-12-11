@@ -117,6 +117,7 @@ button {
   border: 1px solid black;
   color: rgb(0, 0, 0);
   border-radius: 5px;
+  margin: 20px;
 }
 
 button:hover {
