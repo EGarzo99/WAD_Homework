@@ -90,6 +90,17 @@ export default createStore({
       } catch (err) {
         console.error("Error logging in:", err);
       }
+    },
+
+    async deleteAllPosts({ commit }) {
+      try {
+        await fetch("http://localhost:3000/api/posts", {
+          method: "DELETE"
+        });
+        commit("set_Posts", []);
+      } catch (err) {
+        console.error("Error deleting all posts:", err);
+      }
     }
   }
 })

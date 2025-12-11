@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '../store'
 import MainPage from '../views/MainPage.vue'
 import SignupPage from '../views/SignupPage.vue'
 import LoginPage from '../views/LoginPage.vue'
@@ -36,13 +37,24 @@ const routes = [{
     {
         path: '/Addpost',
         name: 'AddPost',
-        component: AddpostPage
+        component: AddpostPage,
+        meta: { requiresAuth: true }
     }
 ]
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes
+})
+
+// Route guard to protect AddPost route
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth && !store.state.user) {
+        // User is not logged in, redirect to login
+        next('/Login')
+    } else {
+        next()
+    }
 })
 
 export default router

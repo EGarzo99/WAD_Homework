@@ -22,6 +22,7 @@
     </article>
     <div class="reset-likes">
       <button @click="resetLikes()" style="font-size: 20px;"> Reset Likes </button>
+      <button @click="deleteAllPosts()" style="font-size: 20px;"> Delete All Posts </button>
     </div>
   </div>
 </template>
@@ -52,6 +53,11 @@ export default {
         this.$store.state.posts.forEach(post => {
         this.$store.commit('update_Likes', { id: post.id, likes: 0 });
       });
+      },
+      deleteAllPosts() {
+        if (confirm('Are you sure you want to delete all posts? This cannot be undone.')) {
+          this.$store.dispatch('deleteAllPosts');
+        }
     },
     openPost(id) {
       this.$emit('postClicked', id)
