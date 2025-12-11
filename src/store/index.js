@@ -34,6 +34,7 @@ export default createStore({
 
     async addPost({ commit }, postData) {
       try {
+        postData.user = this.state.user.id; // Assign current user ID to postData
         const res = await fetch("http://localhost:3000/api/posts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
