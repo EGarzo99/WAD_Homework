@@ -32,7 +32,8 @@ const routes = [{
     {
         path: '/Post/:id',
         name: 'Post',
-        component: PostPage
+        component: PostPage,
+        meta: { requiresAuth: true }
     },
     {
         path: '/Addpost',
@@ -47,12 +48,11 @@ const router = createRouter({
     routes
 })
 
-// Route guard to protect AddPost route
+// Route guard to protect routes that require auth
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !store.state.user) {
-        // User is not logged in, redirect to login
         next('/Login')
-        alert("You must be logged in to access the Add Post page.")
+        alert("You must be logged in to access this page.")
     } else {
         next()
     }
