@@ -34,6 +34,7 @@ export default {
     },
     logout() {
       this.set_User(null)
+      this.$router.push('/login')
     }
   }
 }
