@@ -95,10 +95,8 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-
-            'INSERT INTO "Posts"(post_id, user_id, body, date, likes) VALUES ((SELECT MAX(post_id) ' +
-              'FROM "Posts")+1, $1, $2, $3, $4)    RETURNING*', [post.user, post.body, new Date(), 0]
-        
+            'INSERT INTO "Posts"(post_id, user_id, body, date, likes) VALUES (COALESCE((SELECT MAX(post_id) FROM "Posts")+1, 1), $1, $2, $3, $4) RETURNING*', 
+            [post.user, post.body, new Date(), 0]
         );
         console.log("new post created: ", newpost);
         res.json(newpost);
