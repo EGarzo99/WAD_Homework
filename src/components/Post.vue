@@ -30,15 +30,11 @@
 <script>
 export default {
   name: 'Post',
-  computed: {
-    posts() {
-      return this.$store.getters.allPosts
-    }
+  data() {
+    return {posts: []};
   },
   mounted() {
-    if (!this.$store.state.posts.length) {
-      this.$store.dispatch('fetchPosts')
-    }
+    this.fetchPosts()
   },
   methods: {
     formatDate(dateString) {
@@ -61,6 +57,15 @@ export default {
     },
     openPost(id) {
       this.$emit('postClicked', id)
+    },
+    async fetchPosts() {
+      try {
+        const res = await fetch("http://localhost:3000/api/posts");
+        const data = await res.json();
+        this.posts = Array.isArray(data) ? data : [];
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
     }
   }
 }

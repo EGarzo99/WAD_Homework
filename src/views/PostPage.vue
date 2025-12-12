@@ -4,12 +4,16 @@
 
     <div class="content">
       <div v-if="post" class="post-container">
+        <span class="email-tag"> {{ post.email }} </span>
         <h1>Post</h1>
-        <h3>{{ post.email }}</h3>
-        <p>{{ post.body }}</p>
+        <textarea v-model="post.body" :readonly="!isOwner"></textarea>
         <img v-if="post.photo" :src="post.photo" width="300">
       </div>
       <h1 v-else>Post not found</h1>
+      <div class="actions">
+        <button @click="updatePost" :disabled="!isOwner">Update Post </button>
+        <button @click="deletePost" :disabled="!isOwner">Delete</button>
+      </div>
     </div>
 
     <aside class="margin"></aside>
@@ -39,8 +43,45 @@ export default {
     console.error(err);
     this.post = null;
   }
+},
+computed: {
+  isOwner() {
+    return this.post && this.$store.state.user
+      ? this.$store.state.user.user_id === this.post.user_id
+      : false;
+  }
+},
+methods: {
+  async updatePost() {
+    if (!this.post) return;
+    try {
+      const res = await fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ body: this.post.body, date: new Date() })
+      });
+      alert('Post updated successfully');
+    } catch (err) {
+      console.error(err);
+      alert('Error updating post');
+    }
+  },
+  async deletePost() {
+    if (!this.post) return;
+    try {
+      const res = await fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
+        method: 'DELETE'
+      });
+      if (res.ok) {
+        alert('Post deleted successfully');
+        this.$router.push('/');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error deleting post');
+    }
+  }
 }
-
 }
 </script>
 
@@ -73,18 +114,48 @@ h1 {
   max-width: 300px;
 }
 .post-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.post-container img {
-  margin-top: 20px;
-  max-width: 100%;
-  border-radius: 10px;
+.email-tag {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f1f1f1;
+  padding: 4px 8px;
+  border-radius: 8px;
 }
-p {
-  max-width: 800px;
-  text-align: center;
-  line-height: 1.5;
+
+textarea {
+    width: 100%;
+    max-width: 1400px;
 }
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: rgb(200, 200, 200);
+  border: 1px solid black;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 20px;
+}
+button:disabled {
+  background-color: rgb(180, 180, 180);
+  color: rgb(120, 120, 120);
+  cursor: not-allowed;
+  border: 1px solid rgb(150, 150, 150);
+}
+button:hover:enabled {
+  background-color: #369870;
+}
+
+
+
 </style>

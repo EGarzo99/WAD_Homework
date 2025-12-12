@@ -25,7 +25,7 @@ app.get("/api/Posts", async (req, res) => {
 });
 
 // Get post by ID
-app.get("/api/Posts/:id", async (req, res) => {
+app.get("/api/posts/:id", async (req, res) => {
   try {
     const result = await pool.query(
       'SELECT *, u.email FROM "Posts" p JOIN "Users" u ON p.user_id = u.user_id WHERE p.post_id = $1;', [req.params.id]
@@ -105,8 +105,6 @@ app.post('/api/posts', async(req, res) => {
     }
 }); 
 
-app.put
-
 // Create new user
 app.post('/api/users', async(req, res) => {
     try {
@@ -168,32 +166,10 @@ app.put('/api/posts/:id', async(req, res) => {
   } catch (err) {
     console.error(err.message);
   }
-});
-
-
-/*
-// Task 3
-app.get('/api/posts/:id', async(req, res) => {
-    try {
-        console.log("get a post with route parameter  request has arrived");
-        // The req.params property is an object containing properties mapped to the named route "parameters". 
-        // For example, if you have the route /posts/:id, then the "id" property is available as req.params.id.
-        const { id } = req.params; // assigning all route "parameters" to the id "object"
-        const posts = await pool.query( // pool.query runs a single query on the database.
-            //$1 is mapped to the first element of { id } (which is just the value of id). 
-            "SELECT * FROM posttable WHERE id = $1", [id]
-        );
-        res.json(posts.rows[0]); // we already know that the row array contains a single element, and here we are trying to access it
-        // The res.json() function sends a JSON response. 
-        // This method sends a response (with the correct content-type) that is the parameter converted to a JSON string using the JSON.stringify() method.
-    } catch (err) {
-        console.error(err.message);
-    }
 }); 
-*/
 
-/* 
-// Task 4
+
+//Edit a post
 app.put('/api/posts/:id', async(req, res) => {
     try {
         const { id } = req.params;
@@ -207,10 +183,8 @@ app.put('/api/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 });
- */
 
-/* 
-// Task 5
+// Delete a post
 app.delete('/api/posts/:id', async(req, res) => {
     try {
         const { id } = req.params;
@@ -224,7 +198,6 @@ app.delete('/api/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 }); 
-*/
 
 //Start the server
 app.listen(port, () => {

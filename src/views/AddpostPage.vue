@@ -69,20 +69,28 @@ textarea {
     max-width: 1400px;
 }
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #28a745;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: rgb(200, 200, 200);
+  border: 1px solid black;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 20px;
+  justify-content: center;
 }
 
-/* Layout general */
+button:hover {
+  background-color: #369870;
+}
+
 .layout {
     display: flex;
     gap: 20px;
     width: 100%;
 }
 
-/* Columnas laterales grises (tal como te gusta) */
 .margin {
     flex: 1;
     background: rgb(200, 200, 200);
@@ -91,7 +99,6 @@ button {
     max-width: 300px;
 }
 
-/* Contenido central más grande y más bonito */
 .content {
     flex: 2;
     padding: 40px;
