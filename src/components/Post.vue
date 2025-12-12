@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     formatDate(dateString) {
-      const options = { year: 'numeric', month: 'short', day: 'numeric' }
-      return new Date(dateString).toLocaleDateString(undefined, options)
+      const date = new Date(dateString);
+      return date.toLocaleString();
     },
     likePost(post) {
         this.$store.commit('update_Likes', { id: post.id, likes: post.likes + 1 });
