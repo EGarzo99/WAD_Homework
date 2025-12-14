@@ -116,7 +116,7 @@ app.post('/api/users', async(req, res) => {
               'FROM "Users")+1, $1, $2)    RETURNING*', [user.email, user.password]
         );
         console.log("new user created: ", newuser);
-        res.json(newuser);
+        res.json(newuser.rows[0]);
     } catch (err) {
         console.error(err.message);
     }
